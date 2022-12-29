@@ -12,6 +12,7 @@
     <strong>Expiry Date: </strong>{{ renewalData.renewalDate | date }}<br>
     <!-- <strong>Renewal Rate: </strong>{{ renewalData.baseRenewalRate | currency : 'GBP' }} -->
 </p>
+<p>IMPORTANT: If your details or postal address has changed recently, pleases contact the <a [routerLink]="['/contact']">Membership Secretary</a>. </p>
 </div>
 <app-tarrifs-list *ngIf="tarrifSelectedId === 0" (onTarrifSelect)="tarrifSelectedId = 1"></app-tarrifs-list>
 <p *ngIf="tarrifSelectedId !== 0"><strong>Change Membership: </strong>{{ getSelectedTarrifDescription() }} <button class="button button--small" (click)="tarrifSelectedId = 0">Change</button></p>

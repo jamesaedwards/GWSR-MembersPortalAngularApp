@@ -25,7 +25,9 @@ export class JoinService {
   createMembership(membData: INewMembershipRequestDTO){
     return this.http.post<INewMembershipResponseDTO>(this.baseUrl + "Membership", membData);
   }
-
+ checkEmail(email: string){
+  return this.http.get<boolean>(this.baseUrl + 'Person/CheckEmailAddress?email='+email);
+ }
 
   public requestDTO: INewMembershipRequestDTO;
 }

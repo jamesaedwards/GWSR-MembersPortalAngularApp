@@ -1,4 +1,10 @@
 <section class="mb-big">
+  <div class="notification notification--warning" *ngIf="showExistingEmailWarining">
+    <h4 class="text-big">Existing Member?</h4>
+    <p>The email address you have entered appears to already be in our database and may be attached to an existing membership. 
+      If you are not sure, please contact the <a class="text-white" [routerLink]="['/contact']">membership secretary</a> before proceeding. 
+
+    </p></div>
   <app-tarrifs-list *ngIf="step===1" (onTarrifSelect)="SetTarrif($event)"></app-tarrifs-list>
   <!--  <h1 class="text-huge">Join us now!</h1>
    <p>Please select the membership type.</p>
@@ -151,8 +157,14 @@
 </section>
 <section *ngIf="step===7">
   <div class="notification notification--success">
-    <p>Success. Your membership has been created.</p>
+
+    <p class="text-big">Success</p>
+    <p>Your membership has been created. We'll be in touch shortly to confirm your membership. </p>
   </div>
 </section>
+<div *ngIf="error!==''" class="notification notification--error">
+  <p class="text-big">Couldn't Sign You Up. </p>
+  <p>{{ error }}</p>
+</div>
 
 <app-please-waitpopup *ngIf="loading"></app-please-waitpopup>

@@ -34,6 +34,8 @@ export class JoinHomeComponent implements OnInit {
     cornishman: 0
   };
   cornishman: number;
+showExistingEmailWarining: boolean = false;
+error: string = "";
 
   personBasicDetails: IBasicPersonDetails;
   additionalSeatHolders: IBasicPersonDetails[] = [];
@@ -81,6 +83,9 @@ export class JoinHomeComponent implements OnInit {
   setPersonalDetails(person: IBasicPersonDetails){
     this.toTop();
 this.personBasicDetails = person;
+this.joinService.checkEmail(this.personBasicDetails.email).subscribe(r=> {
+  this.showExistingEmailWarining = r;
+});
 if(this.getTarrifSeats() > 1){
   this.step = 3;
   return;
@@ -156,7 +161,9 @@ async createMembership(){
       return;
     },
     error: (e) => {
-      alert("We are sorry, but we couldn't create your membership at this time. Please try again later.");
+      let message = e.error.message;
+      this.error = message + " Please contact the membership secretary.";
+      alert("We are sorry, but we couldn't create your membership at this time. " + message + " Please try again later or contact the membership secretary.");
       this.loading = false;
     }
 
