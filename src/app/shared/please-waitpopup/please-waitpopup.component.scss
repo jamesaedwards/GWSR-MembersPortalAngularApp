@@ -1,0 +1,23 @@
+.popup-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 25%, 0.769);
+
+}
+.popup-box{
+    position: fixed;
+  top: 80px;
+    left: 50%;
+    background-color: #fff;
+    border: 1px #000 solid;
+    max-width: 500px;
+    width: 500px;
+    margin: 3px;
+    transform: translate(-50%);
+    padding: 2rem;
+    z-index: 50;
+    text-align: center;
+}

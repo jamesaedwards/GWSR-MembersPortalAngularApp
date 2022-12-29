@@ -1,0 +1,67 @@
+<h1 class="text-huge">Contact the Membership Secretary</h1>
+<p>Please use the following form to contact the membership secretary.</p>
+<app-please-waitpopup *ngIf="showLoading"></app-please-waitpopup>
+<div *ngIf="messageSent" class="notification notification--success">
+    <p>Thank you. Your message has been sent. </p>
+</div>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" *ngIf="!messageSent">
+    
+    <div class="row">
+        <div class="col-12">
+            <label for="name">Name: </label>
+            <div
+                [className]="(contactForm.controls['name'].invalid && contactForm.controls['name'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="name" type="text" formControlName="name">
+            </div>
+            <p *ngIf="contactForm.controls['name'].invalid && contactForm.controls['name'].touched"
+                class="text-error text-small">Please enter your name</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <label for="email">Email Address: </label>
+            <div
+                [className]="(contactForm.controls['email'].invalid && contactForm.controls['email'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="email" type="email" formControlName="email">
+            </div>
+            <p *ngIf="contactForm.controls['email'].invalid && contactForm.controls['email'].touched"
+                class="text-error text-small">Please enter a valid email address</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <label for="phoneNumber">Contact Phone Number: </label>
+            <div
+                [className]="(contactForm.controls['contactPhoneNumber'].invalid && contactForm.controls['contactPhoneNumber'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="phoneNumber" type="text" formControlName="contactPhoneNumber">
+            </div>
+            <p *ngIf="contactForm.controls['contactPhoneNumber'].invalid && contactForm.controls['contactPhoneNumber'].touched"
+                class="text-error text-small">Please enter a valid phone number</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <label for="membershipNumber">Membership Number (if known): </label>
+            <div
+                [className]="(contactForm.controls['membershipNumber'].invalid && contactForm.controls['membershipNumber'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="membershipNumber" type="text" formControlName="membershipNumber">
+            </div>
+            <p *ngIf="contactForm.controls['membershipNumber'].invalid && contactForm.controls['membershipNumber'].touched"
+                class="text-error text-small">Please enter a valid membership number</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <label for="postcode">Postcode: </label>
+            <div
+                [className]="(contactForm.controls['postcode'].invalid && contactForm.controls['postcode'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="postcode" type="text" formControlName="postcode">
+            </div>
+            <p *ngIf="contactForm.controls['postcode'].invalid && contactForm.controls['postcode'].touched"
+                class="text-error text-small">Please enter a valid postcode</p>
+        </div>
+        <div class="col-12 ">
+            <label for="message">Message: </label>
+            <div
+                [className]="(contactForm.controls['message'].invalid && contactForm.controls['message'].touched) ? 'has-error textarea  textarea-fullWidth' : 'textarea  textarea-fullWidth'">
+                <textarea id="message" type="text" formControlName="message"></textarea>
+
+            </div>
+            <p *ngIf="contactForm.controls['message'].invalid && contactForm.controls['message'].touched"
+                class="text-error text-small">Please enter a Message</p>
+        </div>
+    </div>
+    <button type="submit" class="button" [disabled]="!contactForm.valid">Send Message</button>
+</form>

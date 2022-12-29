@@ -1,0 +1,27 @@
+.top-bar{
+    width: 100%;
+    height: 125px;
+    background-color: $c-secondary;
+    color: $c-white;
+    .top-bar-container{
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+      
+    }
+    .title{
+        font-size: 1.2rem;
+        padding: 1.2rem;
+        text-align: right;
+    }
+    .logo{
+        max-width: 140px;
+
+    }
+    @media(min-width: 800px){
+        .title{
+            font-size: 2.0rem;
+            padding: 2.5rem;
+        }
+    }
+}

@@ -1,0 +1,79 @@
+<h2 class="text-big">Your Address</h2>
+<div *ngIf="step===1" class="">
+
+        <label for="search">Please start typing your address in the box below, suggestions will appear below.</label>
+        <div class="input input-fullWidth">
+            <input id="search" type="text" [(ngModel)]="lookupSearch" (keyup)="handleAddressLookup()">
+        </div>
+
+    <button class="button button--small" (click)="step = 2">enter manually</button>
+    <div *ngIf="lookupSuggestions !==null && lookupSuggestions.length > 0">
+        <p>If you see your address from the suggestions below, please click 'Select' next to it. </p>
+        <ul>
+            <li *ngFor="let s of lookupSuggestions"> <button class="button button--small" (click)="handleLookupSelect(s.id)">Select</button> {{s.address}} </li>
+        </ul>
+        <button class="button" (click)="step = 2">My Address Isn't There</button>
+    </div>
+</div>
+
+
+
+<form [formGroup]="addressForm" (ngSubmit)="submit()" *ngIf="step===2">
+    <div class="row">
+        <div class="col-12 col-lg-4">
+            <label for="addressLine1">Address Line 1: </label>
+            <div [className]="(addressForm.controls['addressLine1'].invalid && addressForm.controls['addressLine1'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="addressLine1" type="text" formControlName="addressLine1">
+            </div>
+            <p *ngIf="addressForm.controls['addressLine1'].invalid && addressForm.controls['addressLine1'].touched"
+                class="text-error text-small">First Line of your address is required</p>
+        </div>
+        <div class="col-12  col-md-6 col-lg-4">
+            <label for="addressLine2">Address Line 2: </label>
+            <div [className]="(addressForm.controls['addressLine2'].invalid && addressForm.controls['addressLine2'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="addressLine2" type="text" formControlName="addressLine2">
+            </div>
+           
+        </div>
+        <div class="col-12  col-md-6 col-lg-4">
+            <label for="addressLine4">Address Line 3: </label>
+            <div [className]="(addressForm.controls['addressLine3'].invalid && addressForm.controls['addressLine3'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="addressLine3" type="text" formControlName="addressLine3">
+            </div>
+           
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <label for="town">Town/city: </label>
+            <div [className]="(addressForm.controls['town'].invalid && addressForm.controls['town'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="town" type="text" formControlName="town">
+            </div>
+            <p *ngIf="addressForm.controls['town'].invalid && addressForm.controls['town'].touched"
+            class="text-error text-small">Town or City is required</p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <label for="county">County: </label>
+            <div [className]="(addressForm.controls['county'].invalid && addressForm.controls['county'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="county" type="text" formControlName="county">
+            </div>
+           
+        </div>
+        <div class="col-12 col-lg-4">
+            <label for="postcode">Postcode: </label>
+            <div [className]="(addressForm.controls['postCode'].invalid && addressForm.controls['postCode'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="postcode" type="text" formControlName="postCode">
+            </div>
+            <p *ngIf="addressForm.controls['postCode'].invalid && addressForm.controls['postCode'].touched"
+            class="text-error text-small">Postcode is required</p>
+        </div>
+        <div class="col-12 col-lg-12">
+            <label for="country">Country: </label>
+            <div [className]="(addressForm.controls['country'].invalid && addressForm.controls['country'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="country" type="text" formControlName="country">
+            </div>
+            <p *ngIf="addressForm.controls['country'].invalid && addressForm.controls['country'].touched"
+            class="text-error text-small">Country is required</p>
+        </div>
+    </div>
+    <button class="button" type="submit" [disabled]="addressForm.valid ==false">Next</button>
+</form>

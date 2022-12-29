@@ -1,0 +1,25 @@
+<main class="container pt-5">
+    <h1 class="text-huge">Welcome to the members area</h1>
+  
+    <div class="row p-2">
+      <div class="col col-md-6 border p-4">
+     
+        <h2 class="text-huge">Join the trust</h2>
+        <!--<img src="assets/station-staff-at-toddington.jpeg" alt="Station Staff"  class="rounded-corners  home-image"  >-->
+        <p>Help us continue our mission in building a world class heritage railway. </p>
+        <a [routerLink]="['/join']" class="button  button--big">Join Now</a>
+      </div>
+      
+      
+      <div class="col col-md-6 border p-4">
+        <h2 class="text-huge">Renew your membership</h2>
+        <!--<img src="assets/SteamAtWinchombe.png" alt="Station Staff"  class="rounded-corners home-image" >-->
+        <p>If you have had a renewal letter with a security code on, please start here:</p>
+        <a [routerLink]="['/renew']" class="button button--big">Renew Now</a>
+      </div>
+    </div>
+    <p>
+      Need help?...contact the <a [routerLink]="['/contact']">membership secretary</a>
+    </p>
+    
+  </main>

@@ -1,0 +1,39 @@
+<section class="mb-big">
+    <h1 class="text-huge">Select Your Membership</h1>
+    <p>Please click on the membership type, then choose a membership length.</p>
+    <hr />
+
+    <div *ngFor="let c of tarrifs" class=" border-bottom mb-medium">
+        <div class="row" (click)="selectedCategory === c.id ? selectedCategory = 0: selectedCategory = c.id ">
+            <div class="col-3 col-md-3 col-lg-1">
+                <button class="button  button--outlined" >
+                    <span *ngIf="selectedCategory===c.id"><i class="fa-solid fa-angle-down"></i></span> 
+                    <span *ngIf="selectedCategory!==c.id"><i class="fa-solid fa-angle-right"></i></span>
+                   </button>
+            </div>
+            <div class="col-9 col-md-2  col-lg-2">
+                <h2 class="text-big">{{c.name}}</h2>
+            </div>
+            <div class="col-12 col-md-7 col-lg-8">
+                <p>{{c.description}}</p>
+            </div>
+        </div>
+       
+      
+        
+       
+        <table class="table" *ngIf="selectedCategory == c.id">
+            <tbody>
+                <tr *ngFor="let t of c.tarrifs">
+                    <td width="10%">
+                        <button class="button" (click)="setTarrif(c, t)">Select</button>
+                    </td>
+                    <!-- <td width="10%">{{t.rate | currency : 'GBP'}}</td> -->
+                    <td width="90%">{{ c.name }} - {{t.description}} </td>
+                   
+     
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,50 @@
+<h2 class="text-big">Renewal Security Code</h2>
+    <p>Please enter the security code that was included in your renewal letter or email. Please don't include the spaces. The code is made up of 2 letters then 12 numbers.</p>
+    <span class="text-error">{{securityFormError}}</span>
+   
+    <!-- <form [formGroup]="securityForm" (submit)="starRenewalProcess()">
+     
+    <div class="row">
+
+        <div class="col-3 col-md-2">
+            <div [className]="(securityForm.controls['renewSecurityLett'].invalid && securityForm.controls['renewSecurityLett'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="security-code1" placeholder="AB" type="text"  formControlName="renewSecurityLett" maxlength="2" autofocus oninput="this.value = this.value.toUpperCase()"  >
+            </div>
+            <p *ngIf="securityForm.controls['renewSecurityLett'].invalid && securityForm.controls['renewSecurityLett'].touched" class="text-error text-small">This doesn't appear to be right. (it is case sensitive)</p>
+        </div>
+
+        <div class="col-3 col-md-2">
+            <div [className]="(securityForm.controls['renewSecurityCode1'].invalid && securityForm.controls['renewSecurityCode1'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="security-code1" placeholder="1234" type="text"  formControlName="renewSecurityCode1" maxlength="4" >
+            </div>
+            <p *ngIf="securityForm.controls['renewSecurityCode1'].invalid && securityForm.controls['renewSecurityCode1'].touched" class="text-error text-small">This doesn't appear to be right.</p>
+        </div>
+
+        <div class="col-3 col-md-2">
+
+            <div [className]="(securityForm.controls['renewSecurityCode2'].invalid && securityForm.controls['renewSecurityCode2'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'" >
+                <input id="security-code2" placeholder="1234"  type="text" formControlName="renewSecurityCode2" maxlength="4">
+            </div>
+            <p *ngIf="securityForm.controls['renewSecurityCode2'].invalid && securityForm.controls['renewSecurityCode2'].touched" class="text-error text-small">This doesn't appear to be right.</p>
+        </div>
+        <div class="col-3 col-md-2">
+            <div [className]="(securityForm.controls['renewSecurityCode3'].invalid && securityForm.controls['renewSecurityCode3'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="security-code2" placeholder="1234"  type="text" formControlName="renewSecurityCode3" maxlength="4">
+            </div>
+            <p *ngIf="securityForm.controls['renewSecurityCode3'].invalid && securityForm.controls['renewSecurityCode3'].touched" class="text-error text-small">This doesn't appear to be right.</p>
+        </div>
+
+       
+    </div>
+    <button class="button" type="submit" [disabled]="securityForm.valid==false">Start Renewal</button>
+</form> -->
+
+
+<form [formGroup]="securityForm2" (submit)="starRenewalProcess()">
+    <div [className]="(securityForm2.controls['securityCode'].invalid && securityForm2.controls['securityCode'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+        <input id="security-code1" placeholder="AB123412341234" type="text"  formControlName="securityCode" maxlength="17"  autofocus oninput="this.value = this.value.toUpperCase()" >
+    </div>
+    <p *ngIf="securityForm2.controls['securityCode'].invalid && securityForm2.controls['securityCode'].touched" class="text-error text-small">This doesn't appear to be right.</p>
+    <button class="button" type="submit" [disabled]="securityForm2.valid==false">Start Renewal</button>
+</form>
+<p>Lost your security code?...<a [routerLink]="['/renew/resend']">Click Here</a></p>

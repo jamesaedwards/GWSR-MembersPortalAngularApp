@@ -1,0 +1,158 @@
+<section class="mb-big">
+  <app-tarrifs-list *ngIf="step===1" (onTarrifSelect)="SetTarrif($event)"></app-tarrifs-list>
+  <!--  <h1 class="text-huge">Join us now!</h1>
+   <p>Please select the membership type.</p>
+   <hr />
+
+   <div *ngFor="let c of tarrifs" class=" border-bottom mb-medium">
+       <div class="row">
+           <div class="col-6 col-md-3 col-lg-2">
+               <button class="button" (click)="selectedCategory === c.id ? selectedCategory = 0: selectedCategory = c.id ">
+                   <span *ngIf="selectedCategory===c.id"><i class="fa-solid fa-angle-down"></i></span>
+                   <span *ngIf="selectedCategory!==c.id"><i class="fa-solid fa-angle-up"></i></span>
+                   View Plans</button>
+           </div>
+           <div class="col-6 col-md-2  col-lg-2">
+               <h2 class="text-big">{{c.name}}</h2>
+           </div>
+           <div class="col-12 col-md-7 col-lg-8">
+               <p>{{c.description}}</p>
+           </div>
+       </div>
+
+
+
+
+       <table class="table" *ngIf="selectedCategory == c.id">
+           <tbody>
+               <tr *ngFor="let t of c.tarrifs">
+                   <td width="50%">{{ c.name }} - {{t.description}} </td>
+                   <td width="10%">{{t.rate | currency : 'GBP'}}</td>
+                   <td width="40%">
+                       <button class="button" (click)="SetTarrif(c.id, t.id)">Select</button>
+                   </td>
+               </tr>
+           </tbody>
+       </table>
+   </div> -->
+</section>
+<section class="p-big" *ngIf="step >= 2">
+  <h1 class="text-huge">Your Details</h1>
+  <hr />
+  <p>
+    <strong>Selected Membership:</strong> {{ getSelectedTarrifDescription() }} <button class="button button--small"
+                                                                                       (click)="resetTarrif()">
+      Change
+    </button>
+  </p>
+  <div *ngIf="step===2">
+
+    <app-persondetails-form [formData]="personBasicDetails" (onFormCompleted)="setPersonalDetails($event)">
+    </app-persondetails-form>
+
+    <p>
+      If this is a gift membership for someone else, please e-mail membership.secretary@gwsr.com with a contact telephone number and full details of the occasion, urgency, etc. after you have completed the sign-up.
+    </p>
+  </div>
+  <div *ngIf="step===3">
+    <h2 class="text-huge">Membership joint-holders</h2>
+    <hr />
+    <p>
+      You can add an additional {{ getTarrifSeats() - 1}} number of people your selected membership type. Please
+      tell us about the other individuals you want to attach to this membership. Generally speaking, the trust will
+      not contact joint-holders unless we cannot get in touch with you.
+    </p>
+    <p>If your joint holder doesn't have their own email address, please re-enter your email address. </p>
+
+
+    <div *ngIf="additionalSeatHolders.length > 0">
+      <p>Added {{additionalSeatHolders.length}} out of {{getTarrifSeats() -1}} available</p>
+      <ul>
+        <li *ngFor="let ad of additionalSeatHolders">
+          <i class="fa-solid fa-check"></i> {{ad.title}}
+          {{ad.firstName}} {{ad.lastName}}
+        </li>
+      </ul>
+    </div>
+
+    <div class="border-top border-bottom p-medium" *ngIf="additionalSeatHolders.length < getTarrifSeats() -1">
+      <app-persondetails-form (onFormCompleted)="addAdditionalSeat($event)"></app-persondetails-form>
+    </div>
+    <div class="border-top border-bottom" *ngIf="additionalSeatHolders.length >= selectedTarrifSeats -1">
+      <p>Thank you. You have added the maximum number of joint holders. </p>
+    </div>
+    <p>When you have finished adding joint holders, click next.</p>
+    <button class="button" (click)="step = step + 1">Next</button>
+  </div>
+  <div class="p-medium" *ngIf="step===4">
+    <app-address-form [setAddress]="address" (onFormComplete)="setAddress($event)"></app-address-form>
+
+  </div>
+</section>
+<section class="p-big" *ngIf="step===5">
+  <p><strong>Please take a moment to double check the details entered. </strong></p>
+
+  <div class="row">
+    <div class="col col-md-6">
+      <h2 class="text-big">Personal Details</h2>
+      <p>
+        <strong>Name: </strong>{{personBasicDetails.title}}. {{personBasicDetails.firstName}}
+        {{personBasicDetails.middleName}} {{personBasicDetails.lastName}}<br>
+        <strong>Email: </strong>{{personBasicDetails.email}}<br>
+        <strong>Phone Number: </strong>{{ personBasicDetails.landLineNo }}<br>
+        <strong>Mobile Number: </strong>{{ personBasicDetails.mobileNumber }}
+
+      </p>
+      <div *ngIf="additionalSeatHolders.length > 0">
+        <h2 class="text-big">Additonal Holders</h2>
+        <div *ngFor="let ah of additionalSeatHolders">
+          <p>
+            <strong>Name: </strong>{{ah.title}}. {{ah.firstName}} {{ah.middleName}} {{ah.lastName}}<br>
+            <strong>Email: </strong>{{ah.email}}<br>
+            <strong>Phone Number: </strong>{{ ah.landLineNo }}<br>
+            <strong>Mobile Number: </strong>{{ ah.mobileNumber }}
+
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col col-md-6">
+      <h2 class="text-big">Address</h2>
+      <p>
+        <strong>Line 1: </strong>{{ address.addressLine1 }}<br>
+        <strong>Line 2: </strong>{{ address.addressLine2 }}<br>
+        <strong>Line 3: </strong>{{ address.addressLine3 }}<br>
+        <strong>Town/City: </strong>{{ address.town }}<br>
+        <strong>County: </strong>{{ address.county }}<br>
+        <strong>Postcode: </strong>{{ address.postCode }}
+      </p>
+    </div>
+
+  </div>
+
+  <button class="button  button--red button-small" (click)="step=2">No, somethings wrong</button>
+  <button class="button" (click)="step=6">Yes, thats correct</button>
+</section>
+<section class="p-big" *ngIf="step===6">
+  <app-payment-methods-table *ngIf="selectedPaymentMethod===0" (onload)="this.toTop()" (onMethodSelected)="selectedPaymentMethod = ($event)">
+  </app-payment-methods-table>
+
+
+  <app-membership-declarations *ngIf="selectedPaymentMethod !==0" (onload)="this.toTop()" [(declarations)]="declarations"
+                               [selectedTarrifBaseRate]="selectedTarrifBaseRate"></app-membership-declarations>
+
+  <button *ngIf="selectedPaymentMethod !==0" class="button button-large" [disabled]="!declarations.termsAccepted" (click)="createMembership()">
+    Pay
+    Now
+  </button>
+
+</section>
+<section *ngIf="step===7">
+  <div class="notification notification--success">
+    <p>Success. Your membership has been created.</p>
+  </div>
+</section>
+
+<app-please-waitpopup *ngIf="loading"></app-please-waitpopup>

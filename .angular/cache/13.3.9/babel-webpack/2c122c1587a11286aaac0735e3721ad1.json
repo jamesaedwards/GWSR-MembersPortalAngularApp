@@ -1,0 +1,1 @@
+{"ast":null,"code":"var _a;\n\nexport class GlobalSettings {}\n_a = GlobalSettings;\nGlobalSettings.baseApiVersion = \"v1/\";\nGlobalSettings.baseApiUrl = \"https://trustwebapi.bluesquirrelsrv.co.uk/api/\" + _a.baseApiVersion;","map":null,"metadata":{},"sourceType":"module"}

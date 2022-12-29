@@ -1,0 +1,82 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <p class="text-small">*Mandatory fields</p>
+    <div class="row">
+        <div class="col-12 col-md-2">
+            <label for="title">Title: </label>
+            <div [className]="(signupForm.controls['title'].invalid && signupForm.controls['title'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="title" type="text" formControlName="title" list="titles">
+            </div>
+            <p *ngIf="signupForm.controls['title'].invalid && signupForm.controls['title'].touched" class="text-error text-small">Please enter a title</p>
+        </div>
+        <div class="col-12 col-md-3">
+            <label for="first-name">First Name*: </label>
+            <div [className]="(signupForm.controls['firstName'].invalid && signupForm.controls['firstName'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="first-name" type="text" formControlName="firstName">
+            </div>
+            <p *ngIf="signupForm.controls['firstName'].invalid && signupForm.controls['firstName'].touched" class="text-error text-small">Your first name is required</p>
+        </div>
+        <div class="col-12 col-md-3">
+            <label for="middle-name">Middle Name: </label>
+            <div class="input input-fullWidth">
+                <input id="middle-name" type="text" formControlName="middleName">
+            </div>
+            <p *ngIf="signupForm.controls['middleName'].invalid && signupForm.controls['middleName'].touched" class="text-error text-small">Your first name is required</p>
+        </div>
+        <div class="col-12 col-md-4">
+            <label for="last-name">Last Name*: </label>
+            <div [className]="(signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="last-name" type="text" formControlName="lastName">
+            </div>
+            <p *ngIf="signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched" class="text-error text-small">Your last name is required</p>
+        </div>
+        <div class="col-12 col-12">
+            <label for="email">Email*: <span class="text-small">(For children, please enter an email address belonging to their parent or guardian)</span></label>
+
+            <div  [className]="(signupForm.controls['email'].invalid && signupForm.controls['email'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="email" type="text" formControlName="email">
+               
+            </div>
+           
+            <p *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched" class="text-error text-small">A valid email address is required</p>
+           
+        </div>
+        <div class="col-12 col-md-4">
+            <label for="mobileNumber">Mobile Phone Number: </label>
+            <div class="input input-fullWidth">
+                <input id="mobileNumber" type="text" formControlName="mobileNumber">
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <label for="phoneNumber">Alternative Phone Number: </label>
+            <div class="input input-fullWidth">
+                <input id="phoneNumber" type="text" formControlName="phoneNumber">
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <label for="mobileNumber">Please select your category: </label>
+            <div class="select select-fullWidth">
+                <select  formControlName="ageCategory" id="ageCategory">
+                    <option value="0">Adult</option>
+                    <option value="1">Senior (60+)</option>
+                    <option value="2">Child/Student</option>
+                </select>
+
+   
+            </div>
+        </div>
+    </div>
+<button class="button" type="submit" [disabled]="signupForm.valid===false">Save</button>
+
+
+
+
+</form>
+
+
+<datalist id="titles">
+	<option>Mr</option>
+	<option>Mrs</option>
+	<option>Miss</option>
+	<option>Ms</option>
+
+</datalist>
