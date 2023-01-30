@@ -17,13 +17,16 @@ export class AppeallistComponent implements OnInit {
     this.donateService.getAllAppeals().subscribe({
       next: (r) => {
         this.appeals = r;
+        this.loading = false;
       },
       error: (e) =>{
-        alert('Sorry, could not get the current list of appeals. Please try again later. ')
+        alert('Sorry, could not get the current list of appeals. Please try again later. ');
+        this.loading = false;
       }
     })
 
   }
+  loading = true;
 setSelectedAppeal(appeal: IAppealDTO){
   this.appealSelected = appeal.id;
   this.OnAppealSelect.emit(appeal.id);

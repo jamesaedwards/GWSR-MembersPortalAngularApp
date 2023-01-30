@@ -1,17 +1,23 @@
 <div *ngIf="showAppealSelection()">
-<div class="notification notification--info" *ngIf="appeals.length ===0">
-    <p>There aren't any active appeals at the moment, however you can make a general donation. </p>
-</div>
-
-
-
-    <h4 class="text-big mb-huge">You can either select to support one of our appeals, or make a donation to our general fund. </h4>
+    <p class="text-medium mb-huge">You can either select to support one of our appeals, or make a donation to our general fund. </p>
     <p class=""><button class="button" (click)="setGeneralDonation()">General Fund Donation</button></p>
-    <h5>Current Appeals</h5>
+    <h2 class="text-big">Current Appeals</h2>
+    <div  *ngIf="loading">
+        <img src="assets/Trainrunning.gif" alt="loading"><p>Loading Appeals...</p>
+    </div>
+
+    <div class="notification notification--info" *ngIf="appeals.length ===0 && loading===false">
+        <p>There aren't any active appeals at the moment, however you can make a general donation. </p>
+    </div>
+
     <div class="donation-card border p-big mb-big" *ngFor="let appeal of appeals">
         <div class="row">
             <div class="col-12 col-sm-3">
-                <img src="https://picsum.photos/200" class="rounded-corners" />
+                <div class="text-center">
+                    <img *ngIf="!appeal.imagePath" src="assets/GWSR_Logo_2022.svg" class="rounded-corners appeal-image" />
+                    <img *ngIf="appeal.imagePath !==''" [src]="appeal.imagePath" class="rounded-corners  appeal-image" />
+                </div>
+
             </div>
             <div class="col-12 col-sm-9">
                 <h4 class="text-big"> {{appeal.name}}</h4>
