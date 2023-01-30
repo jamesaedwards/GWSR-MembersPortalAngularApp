@@ -6,4 +6,5 @@ export interface IRenewRequestDTO {
   repeatDonationOnRenewal: boolean;
   selectPaymentMethod: number;
   cornishman: number;
+  membersComments: string;
 }

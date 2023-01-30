@@ -1,0 +1,100 @@
+<section class="mb-big">
+
+    <h4 class="text-huge">Donate to the Trust</h4>
+    <p>Donations to the Gloucestershire Warwickshire Railway Trust help us through Grant Aid to achieve our aim to
+        support the Gloucestershire Warwickshire Steam Railway as a “Living Museum for the benefit of the public”. All 
+        donations go towards to achieving our aim and are not used towards the day to day running expenses or general
+        maintenance.</p>
+    <app-appeallist (OnAppealSelect)="request.appealId = $event"></app-appeallist>
+    <p *ngIf="request.donationAmount >=1">
+        <strong>Donation Amount: </strong>£{{request.donationAmount}}
+    </p>
+    <div *ngIf="getStep()==1">
+        <form [formGroup]="donationAmountForm" (ngSubmit)="saveDonationAmount()">
+            <label for="donationAmount" class="text-big">How much you would like to Donate? </label>
+            <p class="text-small">Please select a donation amount or
+                enter an amount in the box below. </p>
+            <button class="button button--small" (click)="setDonationAmount(5)" type="button">£5</button>
+            <button class="button button--small" (click)="setDonationAmount(10)" type="button">£10</button>
+            <button class="button button--small" (click)="setDonationAmount(25)" type="button">£25</button>
+            <button class="button button--small" (click)="setDonationAmount(50)" type="button">£50</button>
+            <button class="button button--small" (click)="setDonationAmount(100)" type="button">£100</button>
+            <button class="button button--small" (click)="setDonationAmount(250)" type="button">£250</button>
+            <button class="button button--small" (click)="setDonationAmount(500)" type="button">£500</button>
+            <div
+                [className]="(donationAmountForm.controls['donationAmount'].invalid && donationAmountForm.controls['donationAmount'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                <input id="donationAmount" type="number" formControlName="donationAmount" min="0" max="10000"
+                    placeholder="0.00">
+
+            </div>
+
+            <p *ngIf="donationAmountForm.controls['donationAmount'].invalid && donationAmountForm.controls['donationAmount'].touched"
+                class="text-error text-small">Please an amount to donate</p>
+            <p>{{form.get("donationAmount")?.value}}</p>
+            <button class="button">Next</button>
+        </form>
+    </div>
+    <div *ngIf="getStep()==2" class="border p-medium">
+        <p class="text-big">Can we gift-aid your donation?</p>
+        <p class="text-small">I confirm that I have paid or will pay an amount of Income tax and/or Capital Gains tax
+            that is at least equal to the amount of tax that all charities or Community Amateur Sports Clubs (CASCs)
+            that you donate to will reclaim on your gifts for that tax year. I understand that the other taxes such as
+            VAT and Council Tax do not qualify. </p>
+        <p class="text-small">
+            If you pay Income tax at the higher or additional rate and want to receive the additional tax relief due to
+            you, you
+            must include all your Gift Aid donations on your Self Assessment tax return or ask H.M. Revenue & Customs to
+            adjust your tax code.</p>
+        <p>To collect gift aid, HMRC require us to take your name and address. </p>
+        <button class="button button--green" (click)="request.canGiftAid = true">Yes</button>
+        <button class="button button--red" (click)="request.canGiftAid = false">No</button>
+    </div>
+    <div *ngIf="getStep()==3">
+        <form [formGroup]="form" (ngSubmit)="onPersonalDetailsSave()">
+            <p>Please enter the following details: </p>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <label for="first">First Name: </label>
+                    <div
+                        [className]="(form.controls['firstName'].invalid && form.controls['firstName'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                        <input id="first" type="text" formControlName="firstName" list="titles">
+                    </div>
+                    <p *ngIf="form.controls['firstName'].invalid && form.controls['firstName'].touched"
+                        class="text-error text-small">Please enter your first name</p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="last">Last Name: </label>
+                    <div
+                        [className]="(form.controls['lastName'].invalid && form.controls['lastName'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                        <input id="last" type="text" formControlName="lastName" list="titles">
+                    </div>
+                    <p *ngIf="form.controls['lastName'].invalid && form.controls['lastName'].touched"
+                        class="text-error text-small">Please enter your last name</p>
+                </div>
+                <div class="col-12">
+                    <label for="email">Email Address: </label>
+                    <div
+                        [className]="(form.controls['email'].invalid && form.controls['email'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
+                        <input id="email" type="text" formControlName="email" list="email">
+                    </div>
+                    <p *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+                        class="text-error text-small">Please enter your email address</p>
+                </div>
+            </div>
+            <button type="submit" class="button" [disabled]="!form.valid">Next</button>
+
+
+        </form>
+
+    </div>
+    <div *ngIf="getStep()==4">
+        <p>To claim gift-aid, HMRC require us to obtain your postal address. </p>
+        <app-address-form (onFormComplete)="request.address = $event"></app-address-form>
+    </div>
+    <div *ngIf="getStep()==5">
+        <p>We'll now take you to our payment provider to complete the transaction. </p>
+        <button class="button button--big" (click)="createDonation()">Pay Now</button>
+    </div>
+
+</section>
+<app-please-waitpopup *ngIf="loading"></app-please-waitpopup>

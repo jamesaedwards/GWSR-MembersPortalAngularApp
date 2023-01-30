@@ -1,0 +1,1 @@
+{"ast":null,"code":"var _a;\n\nexport class GlobalSettings {}\n_a = GlobalSettings;\nGlobalSettings.baseApiVersion = \"v1/\"; //public static baseApiUrl: string = \"https://localhost:7006/api/\" + this.baseApiVersion;\n\nGlobalSettings.baseApiUrl = \"https://trustapi.gwsr-portal.co.uk/api/\" + _a.baseApiVersion;","map":null,"metadata":{},"sourceType":"module"}
