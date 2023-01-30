@@ -1,25 +1,57 @@
 <main class="container pt-5">
-    <h1 class="text-huge">Welcome to the members area</h1>
-  
-    <div class="row p-2">
-      <div class="col col-md-6 border p-4">
-     
-        <h2 class="text-huge">Join the trust</h2>
-        <!--<img src="assets/station-staff-at-toddington.jpeg" alt="Station Staff"  class="rounded-corners  home-image"  >-->
-        <p>Join us and help continue our mission in building a world class heritage railway. </p>
-        <a [routerLink]="['/join']" class="button  button--big">Join Now</a>
+  <h1 class="text-huge">Welcome to the members area</h1>
+  <p>Please select an option below or return to the <a href="https://gwrt.org.uk">Trust Website</a>.</p>
+  <hr />
+  <div class="row p-2 mb-big">
+    <div class="col col-md-12 border-bottom p-4 mb-big">
+      <div class="row">
+        <div class="col-12 col-md-5 col-lg-3">
+          <a [routerLink]="['/join']" class="button  button--big">Join Now</a>
+        </div>
+        <div class="col-12 col-md-7 col-lg-9">
+          <h2 class="text-huge">Join The Trust</h2>
+          <!--<img src="assets/station-staff-at-toddington.jpeg" alt="Station Staff"  class="rounded-corners  home-image"  >-->
+          <p>Join us and help continue our mission in building a world class heritage railway. </p>
+
+        </div>
       </div>
-      
-      
-      <div class="col col-md-6 border p-4">
-        <h2 class="text-huge">Renew your membership</h2>
-        <!--<img src="assets/SteamAtWinchombe.png" alt="Station Staff"  class="rounded-corners home-image" >-->
-        <p>If you have had a renewal letter with a security code on or you have prevously held a membership over the past 12 months, please start here:</p>
-        <a [routerLink]="['/renew']" class="button button--big">Renew Now</a>
+
+    </div>
+
+
+    <div class="col col-md-12  border-bottom p-4 mb-big">
+      <div class="row">
+        <div class="col-12 col-md-5 col-lg-3">
+          <a [routerLink]="['/renew']" class="button button--big">Renew Now</a>
+        </div>
+        <div class="col-12 col-md-7 col-lg-9">
+          <h2 class="text-huge">Renew Your Membership</h2>
+          <!--<img src="assets/SteamAtWinchombe.png" alt="Station Staff"  class="rounded-corners home-image" >-->
+          <p>If you have had a renewal letter with a security code on or you have prevously held a membership over the
+            past 12 months, please start here:</p>
+
+        </div>
       </div>
     </div>
-    <p >
-      Need help?...contact the <a [routerLink]="['/contact']">membership secretary</a>
-    </p>
-    
-  </main>
+    <div class="col col-md-12  border-bottom p-4">
+      <div class="row">
+        <div class="col-12 col-md-5 col-lg-3">
+          <a [routerLink]="['/donate']" class="button button--big">Donate Now</a>
+        </div>
+        <div class="col-12 col-md-7 col-lg-9">
+          <h2 class="text-huge">Donate To The Trust</h2>
+          <!--<img src="assets/SteamAtWinchombe.png" alt="Station Staff"  class="rounded-corners home-image" >-->
+          <p>Donations are key to supporting the railway, and any donations you make will go towards our ongoing or
+            future projects.</p>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <p>
+    Need help?...contact the <a [routerLink]="['/contact']">membership secretary</a>.
+  </p>
+
+</main>

@@ -16,12 +16,16 @@ export class DonationsHomeComponent implements OnInit {
   }
 
 getStep(){
-if(this.request.canGiftAid == false){
-  return 5;
-}
+
 if(this.request.address !=undefined && this.request.address?.addressLine1 !== ''){
   return 5;
 }
+if(this.request.canGiftAid === false && this.completedPersonDetails===false){
+  return 3;
+}
+  if(this.request.canGiftAid === false){
+    return 5;
+  }
   if(this.completedPersonDetails==true){
     return 4
   }
