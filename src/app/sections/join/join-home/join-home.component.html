@@ -1,4 +1,5 @@
 <section class="mb-big">
+  <h1 class="text-huge">Join the Trust</h1>
   <div class="notification notification--warning" *ngIf="showExistingEmailWarining">
     <h4 class="text-big">Existing Member?</h4>
     <p>The email address you have entered appears to already be in our database and may be attached to an existing membership. 
@@ -6,44 +7,9 @@
 
     </p></div>
   <app-tarrifs-list *ngIf="step===1" (onTarrifSelect)="SetTarrif($event)"></app-tarrifs-list>
-  <!--  <h1 class="text-huge">Join us now!</h1>
-   <p>Please select the membership type.</p>
-   <hr />
-
-   <div *ngFor="let c of tarrifs" class=" border-bottom mb-medium">
-       <div class="row">
-           <div class="col-6 col-md-3 col-lg-2">
-               <button class="button" (click)="selectedCategory === c.id ? selectedCategory = 0: selectedCategory = c.id ">
-                   <span *ngIf="selectedCategory===c.id"><i class="fa-solid fa-angle-down"></i></span>
-                   <span *ngIf="selectedCategory!==c.id"><i class="fa-solid fa-angle-up"></i></span>
-                   View Plans</button>
-           </div>
-           <div class="col-6 col-md-2  col-lg-2">
-               <h2 class="text-big">{{c.name}}</h2>
-           </div>
-           <div class="col-12 col-md-7 col-lg-8">
-               <p>{{c.description}}</p>
-           </div>
-       </div>
-
-
-
-
-       <table class="table" *ngIf="selectedCategory == c.id">
-           <tbody>
-               <tr *ngFor="let t of c.tarrifs">
-                   <td width="50%">{{ c.name }} - {{t.description}} </td>
-                   <td width="10%">{{t.rate | currency : 'GBP'}}</td>
-                   <td width="40%">
-                       <button class="button" (click)="SetTarrif(c.id, t.id)">Select</button>
-                   </td>
-               </tr>
-           </tbody>
-       </table>
-   </div> -->
 </section>
-<section class="p-big" *ngIf="step >= 2">
-  <h1 class="text-huge">Your Details</h1>
+<section class="" *ngIf="step >= 2">
+  <h1 class="text-big">Your Details</h1>
   <hr />
   <p>
     <strong>Selected Membership:</strong> {{ getSelectedTarrifDescription() }} <button class="button button--small"

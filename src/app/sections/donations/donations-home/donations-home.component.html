@@ -1,10 +1,7 @@
 <section class="mb-big">
 
     <h4 class="text-huge">Donate to the Trust</h4>
-    <p>Donations to the Gloucestershire Warwickshire Railway Trust help us through Grant Aid to achieve our aim to
-        support the Gloucestershire Warwickshire Steam Railway as a “Living Museum for the benefit of the public”. All 
-        donations go towards to achieving our aim and are not used towards the day to day running expenses or general
-        maintenance.</p>
+    <p>Welcome to the online donations portal for the Gloucestershire Warwickshire Railway Trust. Your support through donations plays a vital role in preserving and maintaining this historic railway for future generations to enjoy. Every contribution, no matter how big or small, helps to keep the trains running and preserve the heritage of this unique attraction. Your generosity is greatly appreciated.</p>
     <app-appeallist (OnAppealSelect)="request.appealId = $event"></app-appeallist>
     <p *ngIf="request.donationAmount >=1">
         <strong>Donation Amount: </strong>£{{request.donationAmount}}
