@@ -47,4 +47,4 @@
     <p *ngIf="securityForm2.controls['securityCode'].invalid && securityForm2.controls['securityCode'].touched" class="text-error text-small">This doesn't appear to be right.</p>
     <button class="button" type="submit" [disabled]="securityForm2.valid==false">Start Renewal</button>
 </form>
-<p>Lost your security code?...<a [routerLink]="['/renew/resend']">Click Here</a></p>
+<p>Haven't got or lost your security code?...<a [routerLink]="['/renew/resend']">Click Here</a></p>

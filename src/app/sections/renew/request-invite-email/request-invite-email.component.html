@@ -1,7 +1,7 @@
 <h1 class="text-huge">Lost Security Code</h1>
 <p>Haven't got or lost your renewal security code? Enter your email address below and we will resend it to you. </p>
-<p>Please note that this will only work if we have an up-to-date email addresss on record for you. If we don't then you will need to contact the <a [routerLink]="['/contact']">membership secretary</a></p>
-<form [formGroup]="requestForm" (submit)="send()">
+<p>Please note that this will only work if we have an up-to-date email addresss on record for you, and you have an active or recently expired membership. If we don't then you will need to contact the <a [routerLink]="['/contact']">membership secretary</a></p>
+<form [formGroup]="requestForm" (submit)="send()" *ngIf="!isSent">
     <div [className]="(requestForm.controls['email'].invalid && requestForm.controls['email'].touched) ? 'has-error input input-fullWidth' : 'input input-fullWidth'">
         <input id="email"  type="text"  formControlName="email"  >
     </div>
@@ -10,5 +10,6 @@
     
 </form>
 <div *ngIf="isSent" class="notification notification--success">
-<p>Your request has been sent. If we match your email address in our database, we will email the renewal invite. If you don't recieve anything within the next 24 hours, please contact the <a [routerLink]="['/contact']">membership secretary</a></p> 
+<p>Your request has been sent. If we match your email address in our database, we will email the renewal invite. If you don't receive anything within the next 24 hours, please contact the <a [routerLink]="['/contact']">membership secretary</a></p> 
 </div>
+<app-please-waitpopup *ngIf="loading"></app-please-waitpopup>

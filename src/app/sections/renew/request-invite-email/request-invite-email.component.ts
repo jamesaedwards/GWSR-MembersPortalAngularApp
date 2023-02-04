@@ -10,7 +10,10 @@ import { RenewService } from '../renew.service';
 export class RequestInviteEmailComponent implements OnInit {
   constructor(private renewService: RenewService) {}
 
+  loading: boolean = false;
+
   isSent: boolean = false;
+
   ngOnInit(): void {}
   requestForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -19,11 +22,18 @@ export class RequestInviteEmailComponent implements OnInit {
     if(this.requestForm.valid == false){
       return;
     }
+    this.loading = true;
     this.renewService
       .requestRenewalSent(this.requestForm.get('email')?.value)
       .subscribe({
-        next: r=> this.isSent = true,
-        error: e=> alert('Sorry, a server error occured. Please try again later.')
+        next: r=> {
+          this.isSent = true,
+          this.loading = false;
+        },
+        error: e=> {
+          alert('Sorry, a server error occured. Please try again later.');
+          this.loading = false;
+        }
       });
   }
 }
