@@ -7,12 +7,12 @@
 <h2 class="text-big">Welcome {{renewalData.holderName}}</h2>
 <p>
     <strong>Your Name: </strong>{{renewalData.holderName}}<br />
-    <strong>Email Address: </strong>{{renewalData.contactEmailAddress}} <span  *ngIf="this.renewalData.contactEmailAddress !=''">None</span><br />
+    <strong>Email Address: </strong>{{renewalData.contactEmailAddress}} <span *ngIf="this.renewalData.contactEmailAddress ===''">None</span><br />
     <strong>Current Membership: </strong>{{ renewalData.currentTarrifDescription }}<br>
     <strong>Expiry Date: </strong>{{ renewalData.renewalDate | date }}<br>
     <!-- <strong>Renewal Rate: </strong>{{ renewalData.baseRenewalRate | currency : 'GBP' }} -->
 </p>
-<p class="text-error" *ngIf="this.renewalData.contactEmailAddress !=''">We don't appear to have an email address on record. Please let the Membership Secretary know your email address in the box below. </p>
+<p class="text-error" *ngIf="this.renewalData.contactEmailAddress ===''">We don't appear to have an email address on record. Please let the Membership Secretary know your email address in the box below. </p>
 <label class="label" for="message" >If your contact details have changed recently (or that of any joint member), please tell the Membership Secretary here: </label>
 <div class="textarea  textarea-fullWidth">
   <textarea id="message" [(ngModel)]="renewalDataDTO.membersComments" placeholder="Any change of address, contact phone numbers or email address" style="min-height: 70px"></textarea>
