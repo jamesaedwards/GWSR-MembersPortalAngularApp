@@ -115,7 +115,7 @@
   <app-membership-declarations *ngIf="selectedPaymentMethod !==0" (onload)="this.toTop()" [(declarations)]="declarations"
                                [selectedTarrifBaseRate]="selectedTarrifBaseRate"></app-membership-declarations>
 
-  <button *ngIf="selectedPaymentMethod !==0" class="button button-large" [disabled]="!declarations.termsAccepted" (click)="createMembership()">
+  <button *ngIf="selectedPaymentMethod !==0" class="button button-large" [disabled]="declarations.giftAidDecl ===''" (click)="createMembership()">
     Pay
     Now
   </button>

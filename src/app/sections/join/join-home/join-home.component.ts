@@ -101,38 +101,6 @@ this.step = 4;
     this.toTop();
   }
 
- 
-/* 
-async  registerMember(){
-   this.loading = true;
-    await this.createPerson().then(async () => {
-     await this.createAddress().then(async () => {
-      await this.createMembership();
-     }).catch((e) => {
-        alert(e);
-     }).catch((e) => {
-      alert(e);
-     });
-    }).catch((e) => {
-      alert(e);
-    });
-
-  }
-async createPerson(){
-  this.joinService.createPerson(this.personBasicDetails).subscribe(r => {
-    this.personGuid = r;
-    this.address.id = r;
-    return r;
-  }).unsubscribe();
-}
-async createAddress(){
-  setTimeout(() => { 
-    this.joinService.createAddress(this.address).subscribe(r=> {
-      return;
-    }).unsubscribe();
-   }, 500);
-
-} */
 
 
 async createMembership(){

@@ -39,6 +39,11 @@ export class RenewhomeComponent implements OnInit {
 
     
   }
+
+  canSendRenew(){
+    return this.declarations.giftAidDecl !=='' && this.selectedPaymentMethod !==0;
+  }
+
   getSelectedTarrifDescription(){
     return this.tarrifsService.selectedCategory.name + " - " + this.tarrifsService.selectedTarrif.description
    }
